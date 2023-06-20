@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -7,22 +7,27 @@
 :root {
     font-size: 62.5%;
 
-    --cor01: #0C3440;
-    --cor02: #00453A;
-    --cor03: #212529;
-    --cor04: #02799D;
-    --cor05: #DCE2E9;
-    --cor06: #4950574D;
-    --cor07: rgba(73, 80, 87, 0.5);
-    --cor08: #F03E3E;
-    --cor09: #01475c;
-    --white: #fff;
+    /* cores */
+    --tt-heading: #0C3440;
+    
+    --tt-label: #00453A;
+    --tt-input: #212529;
+    --ot-input: #02799D;
+    --bd-input: rgba(73, 80, 87, 0.3);
+    --tt-placeholder: rgba(73, 80, 87, 0.5);
+    --bg-input: #DCE2E9;
 
-}
+    --tt-button: white;
+    --bg-button: #02799D;
+    --bg-button-hover: #01475c;
+
+    --bg-error: #F03E3E;
+    --tt-error: white;
+}   
 
 body {
-    background: #040924;
     font-family: 'Roboto', sans-serif;
+    background-color: #040924;
 }
 
 body, input, button {
@@ -34,24 +39,26 @@ body, input, button {
     height: 100vh;
     display: grid;
     place-content: center;
-    padding: 1.6rem;
 }
 
 .card {
-    position: relative;
-    width: 100%;
+    padding: 4.8rem 6.4rem 6.4rem;
+    background: white;
     max-width: 42.8rem;
-    background-color: var(--white);
-    padding: 4.8rem 6.4rem;
-    margin: auto;
-    box-shadow: 0 .2rem .4rem rgba(0, 0, 0, 0.1);
+    margin-inline: auto;
+
+    box-shadow: 0 .2rem .4rem rgba(0,0,0,0.1);
     border-radius: .6rem;
 }
 
 .title {
     font-size: 3.2rem;
     line-height: 4rem;
-    color: var(--cor01);
+    color: var(--tt-heading);
+}
+
+form  {
+    width: 30rem;
 }
 
 form h1 {
@@ -61,51 +68,55 @@ form h1 {
 form label {
     font-size: 1.4rem;
     line-height: 1.8rem;
-    color: var(--cor02);
+    color: var(--tt-label);
     margin-bottom: .8rem;
     display: block;
 }
 
 form input {
     width: 100%;
-    border: .1rem solid var(--cor03);
-    background-color: var(--cor05);
+    border: 1px solid var(--bd-input);
+    background: var(--bg-input);
     padding: 1.6rem;
     border-radius: .4rem;
 }
 
 form input:focus {
-    outline: .1rem solid var(--cor03);
+    outline: 2px solid var(--ot-input);
 }
 
 form input::placeholder {
-    color: var(--cor07);
+    color: var(--tt-placeholder);
 }
 
 .input-wrapper + .input-wrapper {
     margin-top: 1.6rem;
 }
 
-
 form button {
     margin-top: 3.2rem;
     padding: 1.6rem;
     width: 100%;
-    border: none;
+
     border-radius: .4rem;
-    background-color: var(--cor04);
-    color: var(--cor05);
+    border: none;
+    background-color: var(--bg-button);
+    color: var(--tt-button);
+
     display: flex;
     align-items: center;
     justify-content: center;
     gap: .8rem;
+
     font-weight: bold;
+
     cursor: pointer;
-    transition-duration: .3s;
+
+    transition: background .3s;
 }
 
 form button:hover {
-    background-color: var(--cor09);
+    background: var(--bg-button-hover);
 }
 
 /* modal */
@@ -115,11 +126,10 @@ form button:hover {
 }
 
 .modal-wrapper {
-    background-color: rgba(0, 0, 0, .7);
     position: absolute;
     inset: 0;
-    width: 100%;
-    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+
     display: grid;
     place-content: center;
 
@@ -127,39 +137,47 @@ form button:hover {
     visibility: hidden;
 }
 
-.modal-wrapper button {
+.modal {
+    position: relative;
+}
+
+.modal button {
+    background: none;
+    border: none;
+
     position: absolute;
     top: 1.6rem;
     right: 1.6rem;
-    background-color: transparent;
-    border: none;
-    transition-duration: .3s;
+
     cursor: pointer;
+
+    transition: transform .3s;
 }
 
-.modal-wrapper button:hover {
-    transform: scale(1.2);
+.modal button:hover {
+    transform: scale(1.1);
 }
 
+/* alert error */
 .alert-error.open {
-    opacity: 1;
     visibility: visible;
+    opacity: 1;
     transform: translateY(0);
 }
 
 .alert-error {
-    transform: translateY(-30px);
-    transition-duration: .3s;
     position: absolute;
-    inset: 0;
-    width: 100%;
-    height: fit-content;
-    background-color: var(--cor08);
-    color: var(--white);
+    background-color: var(--bg-error);
+    top: 0;
+    left: 0;
+    right: 0;
     text-align: center;
-    padding: .8rem;
+    color: var(--tt-error);
+    padding: .8rem 0;
     font-weight: bold;
 
-    opacity: 0;
     visibility: hidden;
+    opacity: 0;
+    transform: translateY(-30px);
+    transition: transform .5s;
 }
